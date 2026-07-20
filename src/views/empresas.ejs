@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Empresas</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Empresas cadastradas</h1>
+</header>
+
+<main>
+
+    <p>
+        <a href="/empresas/nova">Cadastrar nova empresa</a>
+    </p>
+
+    <% if (empresas.length === 0) { %>
+
+        <p>Nenhuma empresa cadastrada.</p>
+
+    <% } else { %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Setor</th>
+                    <th>Telefone</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% empresas.forEach((empresa) => { %>
+                    <tr>
+                        <td><%= empresa.nome %></td>
+                        <td><%= empresa.email %></td>
+                        <td><%= empresa.setor || "Não informado" %></td>
+                        <td><%= empresa.telefone || "Não informado" %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    <% } %>
+
+    <p>
+        <a href="/">Voltar para a página inicial</a>
+    </p>
+
+</main>
+
+</body>
+</html>
