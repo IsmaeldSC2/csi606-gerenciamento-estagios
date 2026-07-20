@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Empresa {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  setor     String?
+  telefone  String?
+  createdAt DateTime @default(now())
+
+  vagas Vaga[]
+}
+
+model Vaga {
+  id          Int      @id @default(autoincrement())
+  titulo      String
+  descricao   String
+  area        String
+  local       String
+  bolsa       Float?
+  requisitos  String?
+  status      String   @default("ABERTA")
+  createdAt   DateTime @default(now())
+
+  empresaId Int
+  empresa   Empresa @relation(fields: [empresaId], references: [id], onDelete: Cascade)
+
+  candidaturas Candidatura[]
+}
+
+model Aluno {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  curso     String
+  createdAt DateTime @default(now())
+
+  candidaturas Candidatura[]
+}
+
+model Candidatura {
+  id        Int      @id @default(autoincrement())
+  status    String   @default("PENDENTE")
+  createdAt DateTime @default(now())
+
+  alunoId Int
+  aluno   Aluno @relation(fields: [alunoId], references: [id], onDelete: Cascade)
+
+  vagaId Int
+  vaga   Vaga @relation(fields: [vagaId], references: [id], onDelete: Cascade)
+
+  @@unique([alunoId, vagaId])
+}

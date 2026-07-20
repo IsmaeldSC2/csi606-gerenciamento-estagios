@@ -1,0 +1,35 @@
+{
+  "name": "gerenciamento-de-estagios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node --watch src/app.js",
+    "start": "node src/app.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsmaeldSC2/csi606-gerenciamento-estagios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/IsmaeldSC2/csi606-gerenciamento-estagios/issues"
+  },
+  "homepage": "https://github.com/IsmaeldSC2/csi606-gerenciamento-estagios#readme",
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "prisma": "^7.8.0"
+  },
+  "allowScripts": {
+    "@prisma/engines@7.8.0": true,
+    "prisma@7.8.0": true
+  }
+}
