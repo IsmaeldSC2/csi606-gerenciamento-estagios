@@ -150,6 +150,32 @@ Como possíveis melhorias futuras, o sistema poderá receber novas funcionalidad
 - Relatórios em PDF.
 
 ---
+# Demonstração
+
+## Página inicial
+
+<img width="1907" height="965" alt="Captura de tela 2026-07-20 204137" src="https://github.com/user-attachments/assets/91915f1a-e8ba-4b8d-9e32-3c40e1e08370" />
+
+
+## Empresas
+
+<img width="1912" height="963" alt="Captura de tela 2026-07-20 204149" src="https://github.com/user-attachments/assets/682c0734-a9a8-4563-bb81-cb1068dbb5cd" />
+
+
+## Vagas
+
+<img width="1911" height="966" alt="Captura de tela 2026-07-20 204204" src="https://github.com/user-attachments/assets/10362be6-004c-4434-84b8-4d4d06e7e28b" />
+
+
+## Alunos
+
+<img width="1912" height="967" alt="Captura de tela 2026-07-20 204217" src="https://github.com/user-attachments/assets/c4065b16-358e-40e6-b509-76092ae321ae" />
+
+
+## Candidaturas
+
+<img width="1911" height="962" alt="Captura de tela 2026-07-20 204236" src="https://github.com/user-attachments/assets/4cdd8680-e30c-4b2e-9c3f-28b833dd1b16" />
+
 
 # Autor
 
