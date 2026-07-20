@@ -163,3 +163,35 @@ exports.excluirVaga = async (req, res) => {
         );
     }
 };
+// Altera o status da vaga
+exports.alterarStatus = async (req, res) => {
+    try {
+        const id = Number(req.params.id);
+        const { status } = req.body;
+
+        const statusPermitidos = [
+            "ABERTA",
+            "PAUSADA",
+            "ENCERRADA"
+        ];
+
+        if (!statusPermitidos.includes(status)) {
+            return res.status(400).send("Status inválido.");
+        }
+
+        await prisma.vaga.update({
+            where: {
+                id
+            },
+            data: {
+                status
+            }
+        });
+
+        res.redirect("/vagas");
+
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).send("Erro ao atualizar o status.");
+    }
+};

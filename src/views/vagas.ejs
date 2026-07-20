@@ -82,7 +82,33 @@
                         </td>
 
                         <td>
-                            <%= vaga.status %>
+                          <form action="/vagas/<%= vaga.id %>/status" method="POST">
+
+                            <select name="status">
+
+                                <option value="ABERTA"
+                                                <%= vaga.status === "ABERTA" ? "selected" : "" %>>
+                                                Aberta
+                                            </option>
+
+                                            <option value="PAUSADA"
+                                                <%= vaga.status === "PAUSADA" ? "selected" : "" %>>
+                                                Pausada
+                                            </option>
+
+                                            <option value="ENCERRADA"
+                                                <%= vaga.status === "ENCERRADA" ? "selected" : "" %>>
+                                                Encerrada
+                                            </option>
+
+                                        </select>
+
+                                        <button type="submit">
+                                            Atualizar
+                                        </button>
+
+                                    </form>
+
                         </td>
 
                         <td>
