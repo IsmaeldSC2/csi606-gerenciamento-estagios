@@ -2,7 +2,11 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Empresas</title>
 
@@ -18,7 +22,9 @@
 <main>
 
     <p>
-        <a href="/empresas/nova">Cadastrar nova empresa</a>
+        <a href="/empresas/nova">
+            Cadastrar nova empresa
+        </a>
     </p>
 
     <% if (empresas.length === 0) { %>
@@ -34,17 +40,39 @@
                     <th>E-mail</th>
                     <th>Setor</th>
                     <th>Telefone</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
             <tbody>
                 <% empresas.forEach((empresa) => { %>
+
                     <tr>
                         <td><%= empresa.nome %></td>
+
                         <td><%= empresa.email %></td>
-                        <td><%= empresa.setor || "Não informado" %></td>
-                        <td><%= empresa.telefone || "Não informado" %></td>
+
+                        <td>
+                            <%= empresa.setor || "Não informado" %>
+                        </td>
+
+                        <td>
+                            <%= empresa.telefone || "Não informado" %>
+                        </td>
+
+                        <td>
+                            <form
+                                action="/empresas/<%= empresa.id %>/excluir"
+                                method="POST"
+                                onsubmit="return confirm('Deseja realmente excluir esta empresa?')"
+                            >
+                                <button type="submit">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
                     </tr>
+
                 <% }) %>
             </tbody>
         </table>
@@ -52,7 +80,9 @@
     <% } %>
 
     <p>
-        <a href="/">Voltar para a página inicial</a>
+        <a href="/">
+            Voltar para a página inicial
+        </a>
     </p>
 
 </main>
