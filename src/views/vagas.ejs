@@ -2,6 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Vagas</title>
 
     <link rel="stylesheet" href="/css/style.css">
@@ -10,18 +16,108 @@
 <body>
 
 <header>
-    <h1>Vagas de Estágio</h1>
+    <h1>Vagas de estágio</h1>
 </header>
 
 <main>
 
-    <h2>Lista de Vagas</h2>
-
     <p>
-        Em breve as vagas cadastradas aparecerão aqui.
+        <a href="/vagas/nova">
+            Cadastrar nova vaga
+        </a>
     </p>
 
-    <a href="/">← Voltar para Home</a>
+    <% if (vagas.length === 0) { %>
+
+        <p>Nenhuma vaga cadastrada.</p>
+
+    <% } else { %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Empresa</th>
+                    <th>Área</th>
+                    <th>Local</th>
+                    <th>Bolsa</th>
+                    <th>Status</th>
+                    <th>Descrição</th>
+                    <th>Requisitos</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% vagas.forEach((vaga) => { %>
+
+                    <tr>
+                        <td>
+                            <%= vaga.titulo %>
+                        </td>
+
+                        <td>
+                            <%= vaga.empresa.nome %>
+                        </td>
+
+                        <td>
+                            <%= vaga.area %>
+                        </td>
+
+                        <td>
+                            <%= vaga.local %>
+                        </td>
+
+                        <td>
+                            <% if (vaga.bolsa !== null) { %>
+
+                                R$ <%= vaga.bolsa.toFixed(2).replace(".", ",") %>
+
+                            <% } else { %>
+
+                                Não informada
+
+                            <% } %>
+                        </td>
+
+                        <td>
+                            <%= vaga.status %>
+                        </td>
+
+                        <td>
+                            <%= vaga.descricao %>
+                        </td>
+
+                        <td>
+                            <%= vaga.requisitos || "Não informado" %>
+                        </td>
+
+                        <td>
+                            <form
+                                action="/vagas/<%= vaga.id %>/excluir"
+                                method="POST"
+                                onsubmit="return confirm('Deseja realmente excluir esta vaga?')"
+                            >
+                                <button type="submit">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+        </table>
+
+    <% } %>
+
+    <p>
+        <a href="/">
+            Voltar para a página inicial
+        </a>
+    </p>
 
 </main>
 

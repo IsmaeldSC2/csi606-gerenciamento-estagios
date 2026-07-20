@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastrar vaga</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Cadastrar nova vaga</h1>
+</header>
+
+<main>
+
+    <% if (empresas.length === 0) { %>
+
+        <p>
+            Nenhuma empresa foi cadastrada.
+            Antes de cadastrar uma vaga, cadastre uma empresa.
+        </p>
+
+        <p>
+            <a href="/empresas/nova">
+                Cadastrar empresa
+            </a>
+        </p>
+
+    <% } else { %>
+
+        <form action="/vagas" method="POST">
+
+            <div>
+                <label for="titulo">
+                    Título da vaga:
+                </label>
+
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="descricao">
+                    Descrição:
+                </label>
+
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    rows="5"
+                    required
+                ></textarea>
+            </div>
+
+            <div>
+                <label for="area">
+                    Área:
+                </label>
+
+                <input
+                    type="text"
+                    id="area"
+                    name="area"
+                    placeholder="Ex.: Desenvolvimento Web"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="local">
+                    Local:
+                </label>
+
+                <input
+                    type="text"
+                    id="local"
+                    name="local"
+                    placeholder="Ex.: João Monlevade - MG"
+                    required
+                >
+            </div>
+
+            <div>
+                <label for="bolsa">
+                    Valor da bolsa:
+                </label>
+
+                <input
+                    type="text"
+                    id="bolsa"
+                    name="bolsa"
+                    placeholder="Ex.: 1200,00"
+                >
+            </div>
+
+            <div>
+                <label for="requisitos">
+                    Requisitos:
+                </label>
+
+                <textarea
+                    id="requisitos"
+                    name="requisitos"
+                    rows="4"
+                    placeholder="Ex.: Conhecimento básico em JavaScript"
+                ></textarea>
+            </div>
+
+            <div>
+                <label for="status">
+                    Status:
+                </label>
+
+                <select
+                    id="status"
+                    name="status"
+                    required
+                >
+                    <option value="ABERTA">
+                        Aberta
+                    </option>
+
+                    <option value="PAUSADA">
+                        Pausada
+                    </option>
+
+                    <option value="ENCERRADA">
+                        Encerrada
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="empresaId">
+                    Empresa:
+                </label>
+
+                <select
+                    id="empresaId"
+                    name="empresaId"
+                    required
+                >
+                    <option value="">
+                        Selecione uma empresa
+                    </option>
+
+                    <% empresas.forEach((empresa) => { %>
+
+                        <option value="<%= empresa.id %>">
+                            <%= empresa.nome %>
+                        </option>
+
+                    <% }) %>
+                </select>
+            </div>
+
+            <button type="submit">
+                Cadastrar vaga
+            </button>
+
+        </form>
+
+    <% } %>
+
+    <p>
+        <a href="/vagas">
+            Voltar para a lista de vagas
+        </a>
+    </p>
+
+    <p>
+        <a href="/">
+            Voltar para a página inicial
+        </a>
+    </p>
+
+</main>
+
+</body>
+</html>

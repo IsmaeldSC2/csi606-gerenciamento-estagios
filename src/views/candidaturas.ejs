@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Candidaturas</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Candidaturas</h1>
+</header>
+
+<main>
+
+    <p>
+        <a href="/candidaturas/nova">
+            Registrar nova candidatura
+        </a>
+    </p>
+
+    <% if (candidaturas.length === 0) { %>
+
+        <p>Nenhuma candidatura registrada.</p>
+
+    <% } else { %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Curso</th>
+                    <th>Vaga</th>
+                    <th>Empresa</th>
+                    <th>Status</th>
+                    <th>Alterar status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% candidaturas.forEach((candidatura) => { %>
+
+                    <tr>
+                        <td>
+                            <%= candidatura.aluno.nome %>
+                        </td>
+
+                        <td>
+                            <%= candidatura.aluno.curso %>
+                        </td>
+
+                        <td>
+                            <%= candidatura.vaga.titulo %>
+                        </td>
+
+                        <td>
+                            <%= candidatura.vaga.empresa.nome %>
+                        </td>
+
+                        <td>
+                            <%= candidatura.status %>
+                        </td>
+
+                        <td>
+                            <form
+                                action="/candidaturas/<%= candidatura.id %>/status"
+                                method="POST"
+                            >
+                                <select
+                                    name="status"
+                                    required
+                                >
+                                    <option
+                                        value="PENDENTE"
+                                        <%= candidatura.status === "PENDENTE"
+                                            ? "selected"
+                                            : ""
+                                        %>
+                                    >
+                                        Pendente
+                                    </option>
+
+                                    <option
+                                        value="APROVADA"
+                                        <%= candidatura.status === "APROVADA"
+                                            ? "selected"
+                                            : ""
+                                        %>
+                                    >
+                                        Aprovada
+                                    </option>
+
+                                    <option
+                                        value="REJEITADA"
+                                        <%= candidatura.status === "REJEITADA"
+                                            ? "selected"
+                                            : ""
+                                        %>
+                                    >
+                                        Rejeitada
+                                    </option>
+                                </select>
+
+                                <button type="submit">
+                                    Atualizar
+                                </button>
+                            </form>
+                        </td>
+
+                        <td>
+                            <form
+                                action="/candidaturas/<%= candidatura.id %>/excluir"
+                                method="POST"
+                                onsubmit="return confirm('Deseja realmente excluir esta candidatura?')"
+                            >
+                                <button type="submit">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% }) %>
+
+            </tbody>
+        </table>
+
+    <% } %>
+
+    <p>
+        <a href="/">
+            Voltar para a página inicial
+        </a>
+    </p>
+
+</main>
+
+</body>
+</html>

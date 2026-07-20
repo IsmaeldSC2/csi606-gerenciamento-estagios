@@ -3,6 +3,10 @@ const path = require("path");
 
 const vagaRoutes = require("./routes/vagaRoutes");
 const empresaRoutes = require("./routes/empresaRoutes");
+const alunoRoutes = require("./routes/alunoRoutes");
+const candidaturaRoutes = require(
+    "./routes/candidaturaRoutes"
+);
 
 const app = express();
 const PORT = 3000;
@@ -16,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 // Página inicial
 app.get("/", (req, res) => {
     res.render("index");
@@ -24,6 +29,8 @@ app.get("/", (req, res) => {
 // Rotas
 app.use("/vagas", vagaRoutes);
 app.use("/empresas", empresaRoutes);
+app.use("/alunos", alunoRoutes);
+app.use("/candidaturas", candidaturaRoutes);
 
 
 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Nova candidatura</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Registrar nova candidatura</h1>
+</header>
+
+<main>
+
+    <% if (alunos.length === 0) { %>
+
+        <p>
+            Nenhum aluno cadastrado. Cadastre um aluno antes
+            de registrar uma candidatura.
+        </p>
+
+        <p>
+            <a href="/alunos/novo">
+                Cadastrar aluno
+            </a>
+        </p>
+
+    <% } else if (vagas.length === 0) { %>
+
+        <p>
+            Não existem vagas abertas para candidatura.
+        </p>
+
+        <p>
+            <a href="/vagas/nova">
+                Cadastrar vaga
+            </a>
+        </p>
+
+    <% } else { %>
+
+        <form action="/candidaturas" method="POST">
+
+            <div>
+                <label for="alunoId">
+                    Aluno:
+                </label>
+
+                <select
+                    id="alunoId"
+                    name="alunoId"
+                    required
+                >
+                    <option value="">
+                        Selecione um aluno
+                    </option>
+
+                    <% alunos.forEach((aluno) => { %>
+
+                        <option value="<%= aluno.id %>">
+                            <%= aluno.nome %> -
+                            <%= aluno.curso %>
+                        </option>
+
+                    <% }) %>
+                </select>
+            </div>
+
+            <div>
+                <label for="vagaId">
+                    Vaga:
+                </label>
+
+                <select
+                    id="vagaId"
+                    name="vagaId"
+                    required
+                >
+                    <option value="">
+                        Selecione uma vaga
+                    </option>
+
+                    <% vagas.forEach((vaga) => { %>
+
+                        <option value="<%= vaga.id %>">
+                            <%= vaga.titulo %> -
+                            <%= vaga.empresa.nome %>
+                        </option>
+
+                    <% }) %>
+                </select>
+            </div>
+
+            <button type="submit">
+                Registrar candidatura
+            </button>
+
+        </form>
+
+    <% } %>
+
+    <p>
+        <a href="/candidaturas">
+            Voltar para as candidaturas
+        </a>
+    </p>
+
+    <p>
+        <a href="/">
+            Voltar para a página inicial
+        </a>
+    </p>
+
+</main>
+
+</body>
+</html>
